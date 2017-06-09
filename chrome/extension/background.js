@@ -21,8 +21,8 @@ function promisifyAll(obj, list) {
 promisifyAll(chrome, [
   'tabs',
   'windows',
-  'browserAction',
-  'contextMenus'
+  'browserAction'
+  // 'contextMenus'
 ]);
 promisifyAll(chrome.storage, [
   'local',

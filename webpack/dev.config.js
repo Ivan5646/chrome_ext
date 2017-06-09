@@ -48,7 +48,7 @@ const baseDevConfig = () => ({
     extensions: ['', '.js']
   },
   module: {
-    loaders: [{
+    loaders: [{   // ES6
       test: /\.js$/,
       loader: 'babel',
       exclude: /node_modules/,
