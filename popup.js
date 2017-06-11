@@ -1,1 +1,1 @@
-document.getElementById('status').innerHTML = "Content changed by popup.js";
+// document.getElementById('status').innerHTML = "Content changed by popup.js";
