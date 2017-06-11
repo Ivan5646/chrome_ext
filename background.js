@@ -15,7 +15,7 @@ fetch('http://www.softomate.net/ext/employees/list.json').then(function (result)
   console.log('The remote data is fetched!');
   console.log(result);
   myObj = result[0];
-  document.getElementById('status').innerHTML = myObj.name;
+  document.getElementById('status').innerHTML = "name: " + myObj.name + ", domain: " + myObj.domain;
   dispatch(getRemoteDataEndSuccess(result));
 }).catch(function (error) {
   return dispatch(getRemoteDataEndFail(error));
