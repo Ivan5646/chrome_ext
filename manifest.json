@@ -10,17 +10,12 @@
     "default_popup": "popup.html"
   },
   "background": {
-    "scripts": ["background.js"] // ?
-     // "page": "background.html" // cannot be used at sthe same time
+    "persistent": false,
+    "scripts": ["background.js"]
   },
   "permissions": [
-    "activeTab",
-    "https://ajax.googleapis.com/"
+    "background",
+    "storage",
+    "activeTab"
   ]
-  // "content_scripts": [
-  //   {
-  //     "matches": ["http://www.google.com/*"], // ?
-  //     "js": ["background.js"]
-  //   }
-  // ]
 }
