@@ -8,7 +8,7 @@ let requestData = () => {
     }
   });
 
-  fetch('http://www.softomate.net/ext/employees/list.json')
+setTimeout( fetch('http://www.softomate.net/ext/employees/list.json')
     .then((result) =>
       result.json()
     )
@@ -31,7 +31,8 @@ let requestData = () => {
           error: error
         }
       })
-    );
+    ), 2000);
+
 };
 
 chrome.extension.onMessage.addListener((request, sender, sendResponse) => {

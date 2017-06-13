@@ -5,9 +5,14 @@ var processRemoteData = function processRemoteData(state) {
     return;
   }
 
-  let text = '';
-  state.data.forEach((item) => text += item.name + ' ');
-  $('#status').text(text);
+  if (state.pending == true) {
+    $('#status').append('<img id="preloader" src="img/preloader.gif" width="30px" height="30px" />')
+  }else {
+    // $('#preloader').remove();
+    let text = '';
+    state.data.forEach((item) => text += item.name + ' ');
+    $('#status').text(text);
+  }
 };
 
 chrome.storage.local.get('state', (result) => processRemoteData(result.state));
