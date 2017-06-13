@@ -1,16 +1,20 @@
-var processRemoteData = function processRemoteData(result) {
-  console.log(result.data);
+var processRemoteData = function processRemoteData(state) {
+  console.log(state);
 
-  var myArray = result.data;
-  var tr;
-  for (var i = 0; i < myArray.length; i++) {
-      tr = $('<tr/>');
-      tr.append("<td>" + myArray[i].name + "</td>");
-      tr.append("<td>" + myArray[i].domain + "</td>");
-      tr.append("<td>" + myArray[i].message + "</td>");
-      $('table').append(tr);
+  if (!state.data) {
+    return;
   }
+
+  let text = '';
+  state.data.forEach((item) => text += item.name + ' ');
+  $('#status').text(text);
 };
 
-chrome.storage.local.get('data', processRemoteData);
-chrome.storage.onChanged.addListener(processRemoteData);
+chrome.storage.local.get('state', (result) => processRemoteData(result.state));
+chrome.storage.onChanged.addListener((result) => processRemoteData(result.state.newValue));
+
+$('#refreshButton').on('click', (event) => {
+  event.stopPropagation();
+  event.preventDefault();
+  chrome.extension.sendMessage({ msg: "refreshData" });
+});

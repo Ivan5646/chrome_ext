@@ -1,7 +1,43 @@
-setInterval(fetch('http://www.softomate.net/ext/employees/list.json').then(function (result) {
-  return result.json();
-}).then(function (result) {
-  chrome.storage.local.set({ data: result });
-}).catch(function (error) {
-  return null;
-}), 3600000);
+let REQUEST_INTERVAL = 3600000;
+
+let requestData = () => {
+  // the request is started
+  chrome.storage.local.set({
+    state: {
+      pendidng: true
+    }
+  });
+
+  fetch('http://www.softomate.net/ext/employees/list.json')
+    .then((result) =>
+      result.json()
+    )
+    .then((result) =>
+      // the request is done succesfully
+      chrome.storage.local.set({
+        state: {
+          data: result,
+          pendidng: false,
+          error: null
+        }
+      })
+    )
+    .catch((error) =>
+      // the request is failed
+      chrome.storage.local.set({
+        state: {
+          data: null,
+          pendidng: false,
+          error: error
+        }
+      })
+    );
+};
+
+chrome.extension.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.msg === "refreshData") {
+    requestData();
+  }
+});
+
+setInterval(requestData, REQUEST_INTERVAL);
