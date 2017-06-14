@@ -28,7 +28,7 @@ setTimeout( () => {fetch('http://www.softomate.net/ext/employees/list.json2')
         state: {
           data: null,
           pending: false,
-          error: error
+          error: error.message
         }
       })
     )}, 1000);
