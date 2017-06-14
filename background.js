@@ -4,7 +4,7 @@ let requestData = () => {
   // the request is started
   chrome.storage.local.set({
     state: {
-      pendidng: true
+      pending: true
     }
   });
 
@@ -17,7 +17,7 @@ setTimeout( () => {fetch('http://www.softomate.net/ext/employees/list.json')
       chrome.storage.local.set({
         state: {
           data: result,
-          pendidng: false,
+          pending: false,
           error: null
         }
       })
@@ -27,7 +27,7 @@ setTimeout( () => {fetch('http://www.softomate.net/ext/employees/list.json')
       chrome.storage.local.set({
         state: {
           data: null,
-          pendidng: false,
+          pending: false,
           error: error
         }
       })
