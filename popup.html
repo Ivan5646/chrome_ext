@@ -3,21 +3,24 @@
   <head>
     <title>Mikhail Extension</title>
     <style>
-    body {
-      overflow: scroll;
-      height: 120px;
-      width: 66px;
-    }
+      body {
+        overflow: scroll;
+        height: 120px;
+        width: 66px;
+      }
       #pending {
         background-image: url("img/preloader.gif");
         margin-bottom: 2px;
+        /*background-size: 50%;*/
+        background-position: center;
       }
       #error {
         background-image: url("img/error.png");
+        background-size: 100%;
       }
       #pending, #error {
-        width: 70px;
-        height: 70px;
+        width: 50px;
+        height: 50px;
         display: none;
         background-repeat: no-repeat;
       }
