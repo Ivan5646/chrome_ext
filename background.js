@@ -8,7 +8,7 @@ let requestData = () => {
     }
   });
 
-setTimeout( () => {fetch('http://www.softomate.net/ext/employees/list.json')
+setTimeout( () => {fetch('http://www.softomate.net/ext/employees/list.json2')
     .then((result) =>
       result.json()
     )
@@ -31,7 +31,7 @@ setTimeout( () => {fetch('http://www.softomate.net/ext/employees/list.json')
           error: error
         }
       })
-    )}, 2000);
+    )}, 1000);
 
 };
 

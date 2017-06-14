@@ -6,6 +6,7 @@ var processRemoteData = function processRemoteData(state) {
   } else if (state.error) {
     $('#error').css("display", "block");
     $('#errorText').text(state.error);
+    $('#pending').css("display", "none");
   } else {
     $('#error').css("display", "none");
     $('#pending').css("display", "none");
