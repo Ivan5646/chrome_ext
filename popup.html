@@ -2,8 +2,26 @@
 <html>
   <head>
     <title>Mikhail Extension</title>
+    <style>
+      #pending {
+        background-image: url("img/preloader.gif");
+      }
+      #error {
+        background-image: url("img/error.png");
+      }
+      #pending, #error {
+        width: 70px;
+        height: 70px;
+        display: none;
+        background-repeat: no-repeat;
+      }
+    </style>
   </head>
   <body>
+    <div id="pending"></div>
+    <div id="error">
+      <p id="errorText"></p>
+    </div>
     <div id="status"></div>
     <button id="refreshButton">Refresh</button>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>

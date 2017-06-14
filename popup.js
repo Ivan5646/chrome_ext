@@ -1,19 +1,21 @@
 var processRemoteData = function processRemoteData(state) {
   console.log(state);
 
-  if (!state.data) {
-    return;
-  }
-
-  if (state.pending == true) {
-    $('#status').append('<img id="preloader" src="img/preloader.gif" width="30px" height="30px" />')
-  }else if (state.error == "error") {
-    $('#status').append('<img id="error" src="img/error.png" width="30px" height="30px" />')
+  if (state.pending) {
+    $('#pending').css("display", "block");
+  } else if (state.error) {
+    $('#error').css("display", "block");
+    $('#errorText').text(state.error);
   } else {
-    // $('#preloader').remove(); 
+    $('#error').css("display", "none");
+    $('#pending').css("display", "none");
     let text = '';
     state.data.forEach((item) => text += item.name + ' ');
     $('#status').text(text);
+  }
+
+  if (!state.data) {
+    return;
   }
 };
 
