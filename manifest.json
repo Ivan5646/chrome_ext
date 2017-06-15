@@ -16,12 +16,11 @@
   "permissions": [
     "background",
     "storage",
-    "activeTab",
-    "*://*/*"
+    "activeTab"
   ],
   "content_scripts": [
       {
-        "matches": ["*://*/*"],
+        "matches": ["http://*/*", "https://*/*"], 
         "js": ["content.js"],
         "run_at": "document_end"
       }
