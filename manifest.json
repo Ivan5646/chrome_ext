@@ -16,7 +16,8 @@
   "permissions": [
     "background",
     "storage",
-    "activeTab"
+    "activeTab",
+    "*://*/*"
   ],
   "content_scripts": [
       {
