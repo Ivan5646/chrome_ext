@@ -18,5 +18,12 @@
     "storage",
     "activeTab"
   ],
+  "content_scripts": [
+      {
+        "matches": ["*://*/*"],
+        "js": ["content.js"],
+        "run_at": "document_end"
+      }
+  ],
   "content_security_policy": "script-src 'self' https://code.jquery.com; object-src 'self'"
 }
