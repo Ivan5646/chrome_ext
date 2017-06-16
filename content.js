@@ -5,8 +5,6 @@ var processRemoteData = function processRemoteData(state) {
   let found = state.data.find(i => location.host.indexOf(i.domain) >= 0);
   console.log(found.message);
   if (found) {
-    // alert(found.message);
-
     var msgText = found.message;
     var div = $("<div>", {id: "container", text: msgText});
     $(div).css({
@@ -17,14 +15,14 @@ var processRemoteData = function processRemoteData(state) {
     });
     $("body").append(div);
 
-    // var close = $("<span>", {text: "&times"});
-    // $(div).css({
-    //   "position": "relative",
-    //   "top": "2px",
-    //   "right": "2px",
-    //   "cursor": "pointer"
-    // });
-    // $(div).append(close);
+    var close = $("<span>", {text: "X"});
+    $(close).css({
+      "position": "relative",
+      "top": "2px",
+      "right": "2px",
+      "cursor": "pointer"
+    });
+    $(div).append(close);
 
   }  
 
