@@ -21,9 +21,10 @@
   "content_scripts": [
       {
         "matches": ["http://*/*", "https://*/*"], 
-        "js": ["content.js"],
+        "js": ["jquery-2.2.4.min.js", "content.js"],
         "run_at": "document_end"
       }
   ],
   "content_security_policy": "script-src 'self' https://code.jquery.com; object-src 'self'"
+  // "web_accessible_resources": ["content.js", "background.js", "https://code.jquery.com/jquery-2.2.4.min.js"]
 }
