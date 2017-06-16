@@ -5,17 +5,27 @@ var processRemoteData = function processRemoteData(state) {
   if (found) {
     // alert(found.message);
 
-    var div = $("<div>", {id: "container", text: "Welcome message."});
+    var msgText = found.message;
+    var div = $("<div>", {id: "container", text: msgText});
     $(div).css({
         "color": "blue",
-        "font-size": "28px"
+        "font-size": "28px",
+        "position": "absolute",
+        "top": "20px"
     });
-
-
     $("body").append(div);
 
+    // var close = $("<span>", {text: "&times"});
+    // $(div).css({
+    //   "position": "relative",
+    //   "top": "2px",
+    //   "right": "2px",
+    //   "cursor": "pointer"
+    // });
+    // $(div).append(close);
+
   }  
-  
+
 };
 
 chrome.storage.local.get('state', (result) => processRemoteData(result.state));
