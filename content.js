@@ -1,17 +1,16 @@
-// <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-
 var processRemoteData = function processRemoteData(state) {
 
   let found = state.data.find(i => location.host.indexOf(i.domain) >= 0);
   console.log(found.message);
   if (found) {
     var msgText = found.message;
-    var div = $("<div>", {id: "container", text: msgText});
+    var div = $("<div>", {id: "myContainer", text: msgText});
     $(div).css({
         "color": "blue",
         "font-size": "28px",
         "position": "absolute",
-        "top": "20px"
+        "top": "20px",
+        "z-index": "99999"
     });
     $("body").append(div);
 
