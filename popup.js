@@ -1,24 +1,24 @@
-var processRemoteData = function processRemoteData(state) {
-  console.log(state);
+var processRemoteData = function processRemoteData(popupState) {
+  console.log(popupState);
 
-  if (state.pending) {
+  if (popupState.pending) {
     $('#pending').show();
-  } else if (state.error) {
+  } else if (popupState.error) {
       $('#error').show();
-      $('#errorText').text(state.error);
+      $('#errorText').text(popupState.error);
       $('#pending').hide();
   } else {
       $('#errorText').text('');
       $('#error').hide();
       $('#pending').hide();
       let text = '';
-      state.data.forEach((item) => text += item.name + ' ');
+      popupState.data.forEach((item) => text += item.name + ' ');
       $('#status').text(text);
   }
 };
 
-chrome.storage.local.get('state', (result) => processRemoteData(result.state));
-chrome.storage.onChanged.addListener((result) => processRemoteData(result.state.newValue)); //newValue?
+chrome.storage.local.get('popupState', (result) => processRemoteData(result.popupState));
+chrome.storage.onChanged.addListener((result) => processRemoteData(result.popupState.newValue)); //newValue?
 
 $('#refreshButton').on('click', (event) => {
   event.stopPropagation();

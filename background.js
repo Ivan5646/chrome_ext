@@ -8,7 +8,7 @@ let requestData = () => {
     }
   });
 
-setTimeout( () => {fetch('http://www.softomate.net/ext/employees/list.json') // test error
+setTimeout( () => {fetch('http://www.softomate.net/ext/employees/list.json') 
     .then((result) =>
       result.json()
     )

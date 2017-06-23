@@ -6,17 +6,17 @@ var processRemoteData = function processRemoteData(state) {
     var msgText = found.message;
     var div = $("<div>", {id: "myContainer", text: msgText});
     $(div).css({
-        "font-size": "28px",
-        "position": "absolute",
-        "top": "20px",
-        "z-index": "99999",
-        "padding": "20px",
-        "background-color": "#f44336",
-        "color": "white",
-        "opacity": "1",
-        "transition": "opacity 0.6s",
-        'margin-bottom': "15px",
-        "background-color": "#4CAF50"
+      "font-size": "28px",
+      "position": "absolute",
+      "top": "20px",
+      "z-index": "99999",
+      "padding": "20px",
+      "background-color": "#f44336",
+      "color": "white",
+      "opacity": "1",
+      "transition": "opacity 0.6s",
+      'margin-bottom': "15px",
+      "background-color": "#4CAF50"
     });
     $("body").append(div);
 
@@ -43,6 +43,6 @@ chrome.storage.local.get('state', (result) => processRemoteData(result.state));
 
 $(document).ready(function(){
   $("#close").click(function(){
-    $("#myContainer").toggle();
+    $("#myContainer").hide();
   });
 });
