@@ -1,8 +1,12 @@
 var processRemoteData = function processRemoteData(popupState) {
 
   let found = popupState.data.find(i => location.host.indexOf(i.domain) >= 0); // finding the required websites
-  console.log(found.message);
-  if (found) { // & 
+  console.log(found.domain);
+  var website = found.domain;
+  website = website.substring(0, website.indexOf(".")); // cut off domain zone 
+  var yandex = "yandex";
+  var closed = popupState.contentState.yandex.closed;
+  if (found && !closed) { // &
     var msgText = found.message;
     var div = $("<div>", {id: "myContainer", text: msgText});
     $(div).css({
@@ -35,25 +39,24 @@ var processRemoteData = function processRemoteData(popupState) {
     });
     $(div).append(close);
   }
-}
 
-var processRemoteData2 = function processRemoteData2(contentState) {
-  $(document).ready(function(){
+  $(document).ready(function(){    
     $("#close").click(function(){
       $("#myContainer").hide();
       chrome.storage.local.set({
-        // contentState.google.closed = true; 
-        contentState: {
-          'google': {
-            count: 0,
-            closed: true
+        popupState: {
+          contentState: {
+            msgText: {
+              closed: true
+            }
           }
         }
       });
-      console.log(contentState.google.closed);
+      // chrome.extension.sendMessage({ msg: "closed" });
     });  
   });
+
 }
 
 chrome.storage.local.get('popupState', (result) => processRemoteData(result.popupState));
-chrome.storage.local.get('contentState', (result) => processRemoteData2(result.contentState));
+
