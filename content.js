@@ -1,8 +1,8 @@
-var processRemoteData = function processRemoteData(state) {
+var processRemoteData = function processRemoteData(popupState) {
 
-  let found = state.data.find(i => location.host.indexOf(i.domain) >= 0);
+  let found = popupState.data.find(i => location.host.indexOf(i.domain) >= 0); // finding the required websites
   console.log(found.message);
-  if (found) {
+  if (found) { // & 
     var msgText = found.message;
     var div = $("<div>", {id: "myContainer", text: msgText});
     $(div).css({
@@ -34,15 +34,26 @@ var processRemoteData = function processRemoteData(state) {
       "transition": "0.3s"
     });
     $(div).append(close);
+  }
+}
 
-  }  
-
-};
-
-chrome.storage.local.get('state', (result) => processRemoteData(result.state));
-
-$(document).ready(function(){
-  $("#close").click(function(){
-    $("#myContainer").hide();
+var processRemoteData2 = function processRemoteData2(contentState) {
+  $(document).ready(function(){
+    $("#close").click(function(){
+      $("#myContainer").hide();
+      chrome.storage.local.set({
+        // contentState.google.closed = true; 
+        contentState: {
+          'google': {
+            count: 0,
+            closed: true
+          }
+        }
+      });
+      console.log(contentState.google.closed);
+    });  
   });
-});
+}
+
+chrome.storage.local.get('popupState', (result) => processRemoteData(result.popupState));
+chrome.storage.local.get('contentState', (result) => processRemoteData2(result.contentState));

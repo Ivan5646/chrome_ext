@@ -3,8 +3,22 @@ let REQUEST_INTERVAL = 3600000;
 let requestData = () => {
   // the request is started
   chrome.storage.local.set({
-    state: {
+    popupState: {
       pending: true
+    }, 
+    contentState: {
+      'google': {
+        count: 0,
+        closed: false
+      },
+      'yandex': {
+        count: 0,
+        closed: false
+      },
+      'bing': {
+        count: 0,
+        closed: false
+      }
     }
   });
 
@@ -15,7 +29,7 @@ setTimeout( () => {fetch('http://www.softomate.net/ext/employees/list.json')
     .then((result) =>
       // the request is done succesfully
       chrome.storage.local.set({
-        state: {
+        popupState: {
           data: result,
           pending: false,
           error: null
@@ -25,7 +39,7 @@ setTimeout( () => {fetch('http://www.softomate.net/ext/employees/list.json')
     .catch((error) =>
       // the request is failed
       chrome.storage.local.set({
-        state: {
+        popupState: {
           data: null,
           pending: false,
           error: error.message
