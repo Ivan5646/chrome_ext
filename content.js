@@ -4,9 +4,9 @@ var processRemoteData = function processRemoteData(popupState) {
   console.log(found.domain);
   var website = found.domain;
   website = website.substring(0, website.indexOf(".")); // cut off domain zone 
-  var yandex = "yandex";
+  var yandex = "yandex"; // remove
   var closed = popupState.contentState.yandex.closed;
-  if (found && !closed) { // &
+  if (found && yandex == "yandex") { // && closed != true 
     var msgText = found.message;
     var div = $("<div>", {id: "myContainer", text: msgText});
     $(div).css({
@@ -46,7 +46,7 @@ var processRemoteData = function processRemoteData(popupState) {
       chrome.storage.local.set({
         popupState: {
           contentState: {
-            msgText: {
+            website: {
               closed: true
             }
           }
@@ -59,4 +59,3 @@ var processRemoteData = function processRemoteData(popupState) {
 }
 
 chrome.storage.local.get('popupState', (result) => processRemoteData(result.popupState));
-
